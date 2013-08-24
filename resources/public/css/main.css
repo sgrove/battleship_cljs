@@ -1,0 +1,2434 @@
+/* Gmail CSS for menu buttons and layouts */
+.zenbox-wrapper .gbmpala, .zenbox-wrapper .gbmpalb {
+  font: 13px Arial, sans-serif;
+  line-height: 27px;
+  white-space: nowrap; }
+.zenbox-wrapper .gbqfb, .zenbox-wrapper .gbqfba, .zenbox-wrapper .gbqfbb {
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  cursor: default !important;
+  display: inline-block;
+  font-weight: bold;
+  height: 29px;
+  line-height: 29px;
+  min-width: 54px;
+  padding: 0 8px;
+  text-align: center;
+  text-decoration: none !important;
+  -moz-user-select: none;
+  -webkit-user-select: none; }
+.zenbox-wrapper .gbqfba, .zenbox-wrapper .gbqfbb {
+  border: 1px solid gainsboro;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #444444 !important;
+  font-size: 11px; }
+.zenbox-wrapper .gbqfbb {
+  background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(#fbfbfb));
+  background-image: -webkit-linear-gradient(top, white, #fbfbfb);
+  background-image: -moz-linear-gradient(top, white, #fbfbfb);
+  background-image: -ms-linear-gradient(top, white, #fbfbfb);
+  background-image: -o-linear-gradient(top, white, #fbfbfb);
+  background-image: linear-gradient(top, white, #fbfbfb);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#fbfbfb'); }
+.zenbox-wrapper #gbmpal .gbqfbb {
+  margin: 0 20px; }
+.zenbox-wrapper .gbtc, .zenbox-wrapper .gbmc, .zenbox-wrapper .gbmcc {
+  list-style: none; }
+.zenbox-wrapper #gbmpal {
+  border-spacing: 0;
+  margin: 0;
+  white-space: nowrap;
+  width: 100%; }
+.zenbox-wrapper .gbmpala, .zenbox-wrapper .gbmpalb {
+  font: 13px Arial, sans-serif;
+  line-height: 27px;
+  padding: 10px 20px 0;
+  white-space: nowrap; }
+.zenbox-wrapper .gbmpalb {
+  padding-right: 0;
+  text-align: right; }
+
+.goog-menu {
+  background: #fff;
+  border-color: #cccccc #666666 #666666 #cccccc;
+  border-style: solid;
+  border-width: 1px;
+  cursor: default;
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  z-index: 20000;
+  /* Arbitrary, but some apps depend on it... */ }
+
+/**
+ * State: resting.
+ *
+ * NOTE(mleibman,chrishenry):
+ * The RTL support in Closure is provided via two mechanisms -- "rtl" CSS
+ * classes and BiDi flipping done by the CSS compiler.  Closure supports RTL
+ * with or without the use of the CSS compiler.  In order for them not
+ * to conflict with each other, the "rtl" CSS classes need to have the @noflip
+ * annotation.  The non-rtl counterparts should ideally have them as well, but,
+ * since .goog-menuitem existed without .goog-menuitem-rtl for so long before
+ * being added, there is a risk of people having templates where they are not
+ * rendering the .goog-menuitem-rtl class when in RTL and instead rely solely
+ * on the BiDi flipping by the CSS compiler.  That's why we're not adding the
+ * @noflip to .goog-menuitem.
+ */
+.goog-menuitem {
+  color: #000;
+  font: normal 13px Arial, sans-serif;
+  list-style: none;
+  margin: 0;
+  /* 28px on the left for icon or checkbox; 7em on the right for shortcut. */
+  padding: 4px 7em 4px 28px;
+  white-space: nowrap; }
+
+/* BiDi override for the resting state. */
+/* @noflip */
+.goog-menuitem.goog-menuitem-rtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 7em;
+  padding-right: 28px; }
+
+/* If a menu doesn't have checkable items or items with icons, remove padding. */
+.goog-menu-nocheckbox .goog-menuitem,
+.goog-menu-noicon .goog-menuitem {
+  padding-left: 12px; }
+
+/*
+ * If a menu doesn't have items with shortcuts, leave just enough room for
+ * submenu arrows, if they are rendered.
+ */
+.goog-menu-noaccel .goog-menuitem {
+  padding-right: 20px; }
+
+.goog-menuitem-content {
+  color: #000;
+  font: normal 13px Arial, sans-serif; }
+
+/* State: disabled. */
+.goog-menuitem-disabled .goog-menuitem-accel,
+.goog-menuitem-disabled .goog-menuitem-content {
+  color: #cccccc !important; }
+
+.goog-menuitem-disabled .goog-menuitem-icon {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+/* State: hover. */
+.goog-menuitem-highlight,
+.goog-menuitem-hover {
+  background-color: #d6e9f8;
+  /* Use an explicit top and bottom border so that the selection is visible
+   * in high contrast mode. */
+  border-color: #d6e9f8;
+  border-style: dotted;
+  border-width: 1px 0;
+  padding-bottom: 3px;
+  padding-top: 3px; }
+
+/* State: selected/checked. */
+.goog-menuitem-checkbox,
+.goog-menuitem-icon {
+  background-repeat: no-repeat;
+  height: 16px;
+  left: 6px;
+  position: absolute;
+  right: auto;
+  vertical-align: middle;
+  width: 16px; }
+
+/* BiDi override for the selected/checked state. */
+/* @noflip */
+.goog-menuitem-rtl .goog-menuitem-checkbox,
+.goog-menuitem-rtl .goog-menuitem-icon {
+  /* Flip left/right positioning. */
+  left: auto;
+  right: 6px; }
+
+.goog-option-selected .goog-menuitem-checkbox,
+.goog-option-selected .goog-menuitem-icon {
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
+
+/* Keyboard shortcut ("accelerator") style. */
+.goog-menuitem-accel {
+  color: #999;
+  /* Keyboard shortcuts are untranslated; always left-to-right. */
+  /* @noflip */
+  direction: ltr;
+  left: auto;
+  padding: 0 6px;
+  position: absolute;
+  right: 0;
+  text-align: right; }
+
+/* BiDi override for shortcut style. */
+/* @noflip */
+.goog-menuitem-rtl .goog-menuitem-accel {
+  /* Flip left/right positioning and text alignment. */
+  left: 0;
+  right: auto;
+  text-align: left; }
+
+/* Mnemonic styles. */
+.goog-menuitem-mnemonic-hint {
+  text-decoration: underline; }
+
+.goog-menuitem-mnemonic-separator {
+  color: #999;
+  font-size: 12px;
+  padding-left: 4px; }
+
+.goog-menuseparator {
+  border-top: 1px solid #cccccc;
+  margin: 4px 0;
+  padding: 0; }
+
+/* State: resting. */
+.goog-menu-button {
+  /* Client apps may override the URL at which they serve the image. */
+  background: #dddddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  border: 0;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 2px;
+  outline: none;
+  padding: 0;
+  text-decoration: none;
+  vertical-align: middle; }
+
+/* Pseudo-rounded corners. */
+.goog-menu-button-outer-box,
+.goog-menu-button-inner-box {
+  border-style: solid;
+  border-color: #aaa;
+  vertical-align: top; }
+
+.goog-menu-button-outer-box {
+  margin: 0;
+  border-width: 1px 0;
+  padding: 0; }
+
+.goog-menu-button-inner-box {
+  margin: 0 -1px;
+  border-width: 0 1px;
+  padding: 3px 4px; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-menu-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-menu-button-rtl .goog-menu-button-outer-box {
+  /* @noflip */
+  left: -1px;
+  /* @noflip */
+  right: auto; }
+
+* html .goog-menu-button-rtl .goog-menu-button-inner-box {
+  /* @noflip */
+  right: auto; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-menu-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* IE7 BiDi fix. */
+*:first-child + html .goog-menu-button-rtl .goog-menu-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
+
+/* Safari-only hacks. */
+::root .goog-menu-button,
+::root .goog-menu-button-outer-box,
+::root .goog-menu-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0; }
+
+::root .goog-menu-button-caption,
+::root .goog-menu-button-dropdown {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal; }
+
+/* State: disabled. */
+.goog-menu-button-disabled {
+  background-image: none !important;
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+.goog-menu-button-disabled .goog-menu-button-outer-box,
+.goog-menu-button-disabled .goog-menu-button-inner-box,
+.goog-menu-button-disabled .goog-menu-button-caption,
+.goog-menu-button-disabled .goog-menu-button-dropdown {
+  color: #333333 !important;
+  border-color: #999999 !important; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-menu-button-disabled {
+  margin: 2px 1px !important;
+  padding: 0 1px !important; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-menu-button-disabled {
+  margin: 2px 1px !important;
+  padding: 0 1px !important; }
+
+/* State: hover. */
+.goog-menu-button-hover .goog-menu-button-outer-box,
+.goog-menu-button-hover .goog-menu-button-inner-box {
+  border-color: #99ccff #6699ee #6699ee #77aaff !important;
+  /* Hover border wins. */ }
+
+/* State: active, open. */
+.goog-menu-button-active,
+.goog-menu-button-open {
+  background-color: #bbb;
+  background-position: bottom left; }
+
+/* State: focused. */
+.goog-menu-button-focused .goog-menu-button-outer-box,
+.goog-menu-button-focused .goog-menu-button-inner-box {
+  border-color: orange; }
+
+/* Caption style. */
+.goog-menu-button-caption {
+  padding: 0 4px 0 0;
+  vertical-align: top; }
+
+/* Dropdown arrow style. */
+.goog-menu-button-dropdown {
+  border: 1px solid red;
+  height: 15px;
+  width: 7px;
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  vertical-align: top; }
+
+/* Pill (collapsed border) styles. */
+/* TODO(gboyer): Remove specific menu button styles and have any button support being a menu button. */
+.goog-menu-button-collapse-right,
+.goog-menu-button-collapse-right .goog-menu-button-outer-box,
+.goog-menu-button-collapse-right .goog-menu-button-inner-box {
+  margin-right: 0; }
+
+.goog-menu-button-collapse-left,
+.goog-menu-button-collapse-left .goog-menu-button-outer-box,
+.goog-menu-button-collapse-left .goog-menu-button-inner-box {
+  margin-left: 0; }
+
+.goog-menu-button-collapse-left .goog-menu-button-inner-box {
+  border-left: 1px solid white; }
+
+.goog-menu-button-collapse-left.goog-menu-button-checked
+.goog-menu-button-inner-box {
+  border-left: 1px solid #dddddd; }
+
+/* Misc. styles used for logging and debugging. */
+fieldset {
+  padding: 4px 8px;
+  margin-bottom: 1em; }
+
+fieldset legend {
+  font-weight: bold;
+  color: #036; }
+
+label, input {
+  vertical-align: middle; }
+
+.hint {
+  font-size: 90%;
+  color: #369; }
+
+.goog-debug-panel {
+  border: 1px solid #336699; }
+
+.goog-debug-panel .logdiv {
+  position: relative;
+  width: 100%;
+  height: 8em;
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll; }
+
+.goog-debug-panel .logdiv .logmsg {
+  font: normal 10px "Lucida Sans Typewriter", "Courier New", Courier, fixed; }
+
+.perf {
+  margin: 0;
+  border: 0;
+  padding: 4px;
+  font: italic 95% Arial, sans-serif;
+  color: #999; }
+
+#perf {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-align: right;
+  margin: 0;
+  border: 0;
+  padding: 4px;
+  font: italic 95% Arial, sans-serif;
+  color: #999; }
+
+.goog-inline-block {
+  position: relative;
+  display: -moz-inline-box;
+  /* Ignored by FF3 and later. */
+  display: inline-block; }
+
+/*
+ * Styles used by goog.ui.ToolbarRenderer.
+ */
+.goog-toolbar {
+  /* Client apps may override the URL at which they serve the image. */
+  border-bottom: 1px solid #d5d5d5;
+  cursor: default;
+  font: normal 12px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 2px;
+  position: relative;
+  zoom: 1;
+  /* The toolbar element must have layout on IE. */ }
+
+/*
+ * Styles used by goog.ui.ToolbarButtonRenderer.
+ */
+.goog-toolbar-button {
+  margin: 0 2px;
+  border: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: middle;
+  cursor: default;
+  outline: none; }
+
+/* Pseudo-rounded corners. */
+.goog-toolbar-button-outer-box,
+.goog-toolbar-button-inner-box {
+  border: 0;
+  vertical-align: top; }
+
+.goog-toolbar-button-outer-box {
+  margin: 0;
+  padding: 1px 0; }
+
+.goog-toolbar-button-inner-box {
+  margin: 0 -1px;
+  padding: 3px 4px; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-toolbar-button-rtl .goog-toolbar-button-outer-box {
+  /* @noflip */
+  left: -1px; }
+
+* html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  /* @noflip */
+  right: auto; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-toolbar-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* IE7 BiDi fix. */
+*:first-child + html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
+
+/* Safari-only hacks. */
+::root .goog-toolbar-button,
+::root .goog-toolbar-button-outer-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0; }
+
+::root .goog-toolbar-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal; }
+
+/* Disabled styles. */
+.goog-toolbar-button-disabled {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+.goog-toolbar-button-disabled .goog-toolbar-button-outer-box,
+.goog-toolbar-button-disabled .goog-toolbar-button-inner-box {
+  /* Disabled text/border color trumps everything else. */
+  color: #333333 !important;
+  border-color: #999999 !important; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-toolbar-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px; }
+
+/* Only draw borders when in a non-default state. */
+.goog-toolbar-button-hover .goog-toolbar-button-outer-box,
+.goog-toolbar-button-active .goog-toolbar-button-outer-box,
+.goog-toolbar-button-checked .goog-toolbar-button-outer-box,
+.goog-toolbar-button-selected .goog-toolbar-button-outer-box {
+  border-width: 0px 0;
+  border-style: solid;
+  padding: 0; }
+
+.goog-toolbar-button-hover .goog-toolbar-button-inner-box,
+.goog-toolbar-button-active .goog-toolbar-button-inner-box,
+.goog-toolbar-button-checked .goog-toolbar-button-inner-box,
+.goog-toolbar-button-selected .goog-toolbar-button-inner-box {
+  border-width: 0 1px;
+  border-style: solid;
+  padding: 3px; }
+
+/* Hover styles. */
+.goog-toolbar-button-hover .goog-toolbar-button-outer-box,
+.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  /* Hover border style wins over active/checked/selected. */
+  border-color: #a1badf !important; }
+
+/* Active/checked/selected styles. */
+.goog-toolbar-button-active,
+.goog-toolbar-button-checked,
+.goog-toolbar-button-selected {
+  /* Active/checked/selected background color always wins. */
+  background-color: #dde1eb !important; }
+
+.goog-toolbar-button-active .goog-toolbar-button-outer-box,
+.goog-toolbar-button-active .goog-toolbar-button-inner-box,
+.goog-toolbar-button-checked .goog-toolbar-button-outer-box,
+.goog-toolbar-button-checked .goog-toolbar-button-inner-box,
+.goog-toolbar-button-selected .goog-toolbar-button-outer-box,
+.goog-toolbar-button-selected .goog-toolbar-button-inner-box {
+  border-color: #729bd1; }
+
+/* Pill (collapsed border) styles. */
+.goog-toolbar-button-collapse-right,
+.goog-toolbar-button-collapse-right .goog-toolbar-button-outer-box,
+.goog-toolbar-button-collapse-right .goog-toolbar-button-inner-box {
+  margin-right: 0; }
+
+.goog-toolbar-button-collapse-left,
+.goog-toolbar-button-collapse-left .goog-toolbar-button-outer-box,
+.goog-toolbar-button-collapse-left .goog-toolbar-button-inner-box {
+  margin-left: 0; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-button-collapse-left .goog-toolbar-button-inner-box {
+  left: 0; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-toolbar-button-collapse-left
+.goog-toolbar-button-inner-box {
+  left: 0; }
+
+/*
+ * Styles used by goog.ui.ToolbarMenuButtonRenderer.
+ */
+.integration_button .goog-toolbar-menu-button {
+  margin: 0 2px;
+  border: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: middle;
+  cursor: default;
+  outline: none; }
+
+/* Pseudo-rounded corners. */
+.integration_button .goog-toolbar-menu-button-outer-box,
+.integration_button .goog-toolbar-menu-button-inner-box {
+  border: 0;
+  vertical-align: top; }
+
+.integration_button .goog-toolbar-menu-button-outer-box {
+  margin: 0px 0px;
+  padding: 1px 0; }
+
+.goog-toolbar-menu-button-inner-box {
+  margin: 0px 1px;
+  padding: 3px 4px; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-menu-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-outer-box {
+  /* @noflip */
+  left: -1px; }
+
+* html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-inner-box {
+  /* @noflip */
+  right: auto; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-toolbar-menu-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* IE7 BiDi fix. */
+*:first-child + html .goog-toolbar-menu-button-rtl
+.goog-toolbar-menu-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
+
+/* Safari-only hacks. */
+::root .goog-toolbar-menu-button,
+::root .goog-toolbar-menu-button-outer-box,
+::root .goog-toolbar-menu-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0; }
+
+::root .goog-toolbar-menu-button-caption,
+::root .goog-toolbar-menu-button-dropdown {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal; }
+
+/* Disabled styles. */
+.goog-toolbar-menu-button-disabled {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+.goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-inner-box {
+  /* Disabled text/border color trumps everything else. */
+  color: #333333 !important;
+  border-color: #999999 !important; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-menu-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-toolbar-menu-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px; }
+
+/* Only draw borders when in a non-default state. */
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box {
+  border-width: 1px 0;
+  border-style: solid;
+  padding: 0; }
+
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
+  border-width: 0 1px;
+  border-style: solid;
+  padding: 0px; }
+
+/* Hover styles. */
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box {
+  /* Hover border color trumps active/open style. */ }
+
+/* Active/open styles. */
+.goog-toolbar-menu-button-active,
+.goog-toolbar-menu-button-open {
+  /* Active/open background color wins. */
+  background-color: #dde1eb !important; }
+
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
+  border-color: #729bd1; }
+
+/* Menu button caption style. */
+.goog-toolbar-menu-button-caption {
+  padding: 0 4px 0 0;
+  width: 15px;
+  vertical-align: middle; }
+
+/* Dropdown style. */
+.goog-toolbar-menu-button-dropdown {
+  border: 1px solid red;
+  width: 7px;
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  vertical-align: middle; }
+
+/*
+ * Styles used by goog.ui.ToolbarSeparatorRenderer.
+ */
+.goog-toolbar-separator {
+  margin: 0 2px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #f7f7f7;
+  padding: 0;
+  width: 0;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 120%;
+  overflow: hidden; }
+
+/*
+ * Additional styling for toolbar select controls, which always have borders.
+ */
+.goog-toolbar-select .goog-toolbar-menu-button-outer-box {
+  border-width: 1px 0;
+  border-style: solid;
+  padding: 0; }
+
+.goog-toolbar-select .goog-toolbar-menu-button-inner-box {
+  border-width: 0 1px;
+  border-style: solid;
+  padding: 3px; }
+
+.goog-toolbar-select .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-select .goog-toolbar-menu-button-inner-box {
+  border-color: #bfcbdf; }
+
+.goog-buttonset-default {
+  font-weight: bold; }
+
+/* Demo styles for goog.ui.Control. */
+.goog-control {
+  position: relative;
+  margin: 2px;
+  border: 2px solid #003366;
+  padding: 2px;
+  font: normal 9pt "Trebuchet MS", Tahoma, Arial, sans-serif;
+  color: #036;
+  background-color: #69c;
+  cursor: pointer;
+  outline: none !important; }
+
+.goog-control-disabled {
+  border-color: #888;
+  color: #888;
+  background-color: #ccc; }
+
+.goog-control-hover {
+  border-color: #369;
+  color: #369;
+  background-color: #9cf; }
+
+.goog-control-active,
+.goog-control-selected,
+.goog-control-checked {
+  border-color: #9cf;
+  color: #9cf;
+  background-color: #369; }
+
+.goog-control-focused {
+  border-color: orange; }
+
+/* Demo styles for goog.ui.Container */
+.goog-container {
+  position: relative;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: #eee;
+  outline: none !important;
+  zoom: 1;
+  /* The container element must have layout on IE. */ }
+
+.goog-container-vertical {
+  width: 25ex;
+  border: 1px solid #888888; }
+
+.goog-container-horizontal {
+  border-bottom: 1px solid #d5d5d5;
+  background: #fafafa url(../images/toolbar-bg.png) repeat-x bottom left; }
+
+/*
+ * Copyright 2008 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/* Author: attila@google.com (Attila Bodis) */
+/* Author: eae@google.com (Emil A. Eklund) */
+/*
+ * Styles used by goog.ui.TabRenderer.
+ */
+.goog-tab {
+  position: relative;
+  padding: 4px 8px;
+  color: #00c;
+  text-decoration: underline;
+  cursor: default; }
+
+.goog-tab-bar-top .goog-tab {
+  margin: 1px 4px 0 0;
+  border-bottom: 0;
+  float: left; }
+
+.goog-tab-bar-top:after,
+.goog-tab-bar-bottom:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.goog-tab-bar-bottom .goog-tab {
+  margin: 0 4px 1px 0;
+  border-top: 0;
+  float: left; }
+
+.goog-tab-bar-start .goog-tab {
+  margin: 0 0 4px 1px;
+  border-right: 0; }
+
+.goog-tab-bar-end .goog-tab {
+  margin: 0 1px 4px 0;
+  border-left: 0; }
+
+/* State: Hover */
+.goog-tab-hover {
+  background: #eee; }
+
+/* State: Disabled */
+.goog-tab-disabled {
+  color: #666; }
+
+/* State: Selected */
+.goog-tab-selected {
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #6b90da; }
+
+.goog-tab-bar-top {
+  padding-top: 5px !important;
+  padding-left: 5px !important;
+  border-bottom: 1px solid #6b90da !important; }
+
+/*
+ * Shift selected tabs 1px towards the contents (and compensate via margin and
+ * padding) to visually merge the borders of the tab with the borders of the
+ * content area.
+ */
+.goog-tab-bar-top .goog-tab-selected {
+  top: 1px;
+  margin-top: 0;
+  padding-bottom: 5px; }
+
+.goog-tab-bar-bottom .goog-tab-selected {
+  top: -1px;
+  margin-bottom: 0;
+  padding-top: 5px; }
+
+.goog-tab-bar-start .goog-tab-selected {
+  left: 1px;
+  margin-left: 0;
+  padding-right: 9px; }
+
+.goog-tab-bar-end .goog-tab-selected {
+  left: -1px;
+  margin-right: 0;
+  padding-left: 9px; }
+
+/*
+ * Styles used by goog.ui.TabBarRenderer.
+ */
+.goog-tab-bar {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  list-style: none;
+  cursor: default;
+  outline: none;
+  background: #ebeff9; }
+
+.goog-tab-bar-clear {
+  clear: both;
+  height: 0;
+  overflow: hidden; }
+
+.goog-tab-bar-start {
+  float: left; }
+
+.goog-tab-bar-end {
+  float: right; }
+
+/*
+ * IE6-only hacks to fix the gap between the floated tabs and the content.
+ * IE7 and later will ignore these.
+ */
+/* @if user.agent ie6 */
+* html .goog-tab-bar-start {
+  margin-right: -3px; }
+
+* html .goog-tab-bar-end {
+  margin-left: -3px; }
+
+/* @endif */
+.goog-tab-content {
+  margin: 0;
+  display: table-cell;
+  vertical-align: top;
+  border: 1px solid #6b90da;
+  border-width: 0px 0px 0px 1px;
+  width: 85%;
+  padding: 4px 8px;
+  background: #fff; }
+
+.zenbox-tab-container {
+  display: table;
+  border: 1px solid #6b90da; }
+
+.modal-dialog {
+  background: #c1d9ff;
+  border: 1px solid #3a5774;
+  color: #000;
+  padding: 4px;
+  position: absolute;
+  z-index: 99; }
+
+.modal-dialog a,
+.modal-dialog a:link,
+.modal-dialog a:visited {
+  color: #06c;
+  cursor: pointer; }
+
+.modal-dialog-bg {
+  background: #666;
+  left: 0;
+  position: absolute;
+  top: 0; }
+
+.modal-dialog-title {
+  background: #e0edfe;
+  color: #000;
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bold;
+  /* Add padding on the right to ensure the close button has room. */
+  padding: 8px 31px 8px 8px;
+  position: relative;
+  _zoom: 1;
+  /* Ensures proper width in IE6 RTL. */ }
+
+.modal-dialog-title-close {
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: #e0edfe url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  cursor: default;
+  height: 15px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 15px;
+  vertical-align: middle; }
+
+.modal-dialog-buttons,
+.modal-dialog-content {
+  background-color: #fff;
+  padding: 8px; }
+
+.zenbox-wrapper {
+  min-width: 235px; }
+  .zenbox-wrapper .zenbox-container.anywhere .zenbox-customer-profile {
+    border: none; }
+  .zenbox-wrapper img.collapsable-handle {
+    width: 19px;
+    height: 16px; }
+  .zenbox-wrapper .zenbox-customer-profile-header {
+    background-color: white; }
+  .zenbox-wrapper .autobox.default {
+    color: #777;
+    font-style: italic; }
+  .zenbox-wrapper .accordion-header {
+    cursor: pointer !important; }
+    .zenbox-wrapper .accordion-header:hover {
+      opacity: 0.6; }
+  .zenbox-wrapper .zenbox-ui-tooltip, .zenbox-wrapper .qtip {
+    font-size: 10.5px !important; }
+  .zenbox-wrapper .zenbox_graph_container {
+    padding: 5px 0; }
+  .zenbox-wrapper .zenbox_graph_title {
+    padding-bototm: 3px; }
+  .zenbox-wrapper .zenbox-ui-tooltip-light {
+    border: 1px solid #e2e2e2 !important; }
+  .zenbox-wrapper .zenbox-container {
+    width: 240px;
+    margin-top: 0; }
+  .zenbox-wrapper .zenbox-ui-tooltip {
+    border-width: 2px; }
+  .zenbox-wrapper .zenbox-ui-tooltip-content {
+    overflow: visible; }
+  .zenbox-wrapper .zenbox-customer-profile {
+    width: 230px; }
+  .zenbox-wrapper .integration_menus li {
+    padding-bottom: 3px; }
+
+html > body var.zenbox_hook, html > body var.zenbox_hook_disabled {
+  font-style: normal !important;
+  display: inline !important;
+  padding: 0;
+  margin: 0; }
+
+.zenbox-wrapper {
+  /* Recent Activities */ }
+  .zenbox-wrapper .collapsable-headline {
+    cursor: pointer; }
+  .zenbox-wrapper .zenbox-container {
+    margin-top: 10px; }
+  .zenbox-wrapper .zenbox-customer-profile {
+    width: 204px;
+    padding: 5px;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    font-family: sans-serif;
+    font-size: 15px;
+    background-color: #FFFFFF;
+    /* Give <abbr> tags a dotted underline to show that you can hover over them */
+    /* Vertically center the shown headers */ }
+    .zenbox-wrapper .zenbox-customer-profile ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none; }
+    .zenbox-wrapper .zenbox-customer-profile li {
+      list-style-type: none; }
+    .zenbox-wrapper .zenbox-customer-profile h3 {
+      margin: 14px 0px 8px 0px;
+      border-bottom: 1px solid #e9e9e9;
+      padding-bottom: 3px; }
+    .zenbox-wrapper .zenbox-customer-profile abbr {
+      border-bottom: 1px dotted #999999; }
+    .zenbox-wrapper .zenbox-customer-profile img.spinner, .zenbox-wrapper .zenbox-customer-profile img.success, .zenbox-wrapper .zenbox-customer-profile img.error {
+      vertical-align: middle; }
+    .zenbox-wrapper .zenbox-customer-profile .zenbox-customer-headings-wrapper {
+      float: left;
+      display: table;
+      margin-top: 1px; }
+    .zenbox-wrapper .zenbox-customer-profile .zenbox-customer-headings {
+      display: table-cell;
+      overflow: hidden;
+      vertical-align: middle;
+      height: 33px; }
+      .zenbox-wrapper .zenbox-customer-profile .zenbox-customer-headings .zenbox-customer-heading {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 140px; }
+      .zenbox-wrapper .zenbox-customer-profile .zenbox-customer-headings .zenbox-customer-heading:nth-child(1) {
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        height: 18px; }
+      .zenbox-wrapper .zenbox-customer-profile .zenbox-customer-headings .zenbox-customer-heading:nth-child(2) {
+        font-size: 12px;
+        color: #444; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu .link_list_menu h3 {
+      margin-bottom: 4px;
+      padding-bottom: 2px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu .link_list_menu p.subheading {
+      color: #777;
+      font-size: 12px;
+      margin: 3px 0px 11px; }
+  .zenbox-wrapper table.zenbox-table tr:nth-child(2n - 1) {
+    background-color: #fcfcfc; }
+  .zenbox-wrapper img.zenbox-customer-avatar {
+    border-radius: 5px;
+    float: left;
+    margin: 4px 7px 10px 4px; }
+  .zenbox-wrapper .zenbox-customer-stats {
+    margin-top: 3px;
+    clear: both; }
+  .zenbox-wrapper .table-wrapper {
+    max-height: 250px;
+    overflow: auto; }
+  .zenbox-wrapper .customer_stats_sort_by {
+    font-size: 10px;
+    margin-bottom: 4px;
+    margin-left: 3px;
+    color: #777; }
+    .zenbox-wrapper .customer_stats_sort_by a {
+      color: #777;
+      text-decoration: none; }
+    .zenbox-wrapper .customer_stats_sort_by a:hover {
+      color: #444; }
+    .zenbox-wrapper .customer_stats_sort_by a.selected {
+      color: #000; }
+  .zenbox-wrapper .zenbox-table {
+    border-spacing: 0px;
+    cell-spacing: 0px;
+    font-size: 80%;
+    width: 100%; }
+    .zenbox-wrapper .zenbox-table tr:nth-child(2n - 1), .zenbox-wrapper .zenbox-table .table-row:nth-child(2n - 1) {
+      background-color: #f5f5f5; }
+    .zenbox-wrapper .zenbox-table div.table-row {
+      display: inline-block;
+      width: 100%;
+      clear: both; }
+    .zenbox-wrapper .zenbox-table tr td, .zenbox-wrapper .zenbox-table .table-row td {
+      padding: 4px;
+      font-size: 12px; }
+    .zenbox-wrapper .zenbox-table tr td.value, .zenbox-wrapper .zenbox-table .table-row td.value {
+      text-align: right;
+      width: 64px; }
+    .zenbox-wrapper .zenbox-table tr .more, .zenbox-wrapper .zenbox-table .table-row .more {
+      text-align: right;
+      width: 100%; }
+    .zenbox-wrapper .zenbox-table tr a, .zenbox-wrapper .zenbox-table .table-row a {
+      text-decoration: none;
+      font-weight: normal;
+      line-height: 1.2; }
+    .zenbox-wrapper .zenbox-table tr .key, .zenbox-wrapper .zenbox-table .table-row .key {
+      font-weight: normal; }
+      .zenbox-wrapper .zenbox-table tr .key img, .zenbox-wrapper .zenbox-table tr .key span, .zenbox-wrapper .zenbox-table tr .key .zenbox_service_icon, .zenbox-wrapper .zenbox-table .table-row .key img, .zenbox-wrapper .zenbox-table .table-row .key span, .zenbox-wrapper .zenbox-table .table-row .key .zenbox_service_icon {
+        vertical-align: middle; }
+    .zenbox-wrapper .zenbox-table tr div.key, .zenbox-wrapper .zenbox-table tr div.value, .zenbox-wrapper .zenbox-table .table-row div.key, .zenbox-wrapper .zenbox-table .table-row div.value {
+      display: inline-block;
+      padding: 4px 8px;
+      min-height: 16px;
+      max-width: 200px; }
+    .zenbox-wrapper .zenbox-table tr div.key, .zenbox-wrapper .zenbox-table .table-row div.key {
+      float: left; }
+    .zenbox-wrapper .zenbox-table tr div.value, .zenbox-wrapper .zenbox-table .table-row div.value {
+      float: right;
+      line-height: 16px; }
+  .zenbox-wrapper table.zenbox-customer-activities {
+    table-layout: fixed;
+    /* CSS truncation */ }
+    .zenbox-wrapper table.zenbox-customer-activities td.key {
+      width: 135px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap; }
+  .zenbox-wrapper .zenbox-integration {
+    border-top: 1px solid #e2e2e2;
+    padding-top: 8px;
+    margin: 14px 0; }
+  .zenbox-wrapper .zenbox-message {
+    padding: 7px; }
+  .zenbox-wrapper .zenbox-integration-menus {
+    position: relative; }
+  .zenbox-wrapper .integration_menus {
+    display: inline-block;
+    width: 140px; }
+    .zenbox-wrapper .integration_menus li {
+      float: left;
+      position: relative;
+      padding: 2px 1px 0px;
+      border: 1px solid transparent;
+      border-bottom: none;
+      line-height: 12px; }
+      .zenbox-wrapper .integration_menus li a.integration_button img.spinner {
+        width: 16px;
+        height: 16px;
+        display: none;
+        opacity: 0.6; }
+      .zenbox-wrapper .integration_menus li a.integration_button.loading {
+        cursor: default; }
+        .zenbox-wrapper .integration_menus li a.integration_button.loading img.spinner {
+          display: block; }
+    .zenbox-wrapper .integration_menus .integration_button {
+      height: 16px;
+      width: 25px;
+      display: inline-block; }
+      .zenbox-wrapper .integration_menus .integration_button div.service_disabled {
+        display: none; }
+      .zenbox-wrapper .integration_menus .integration_button.no_data div.service_disabled {
+        display: inline-block; }
+      .zenbox-wrapper .integration_menus .integration_button.no_data div.service_enabled {
+        display: none; }
+      .zenbox-wrapper .integration_menus .integration_button.loading {
+        background: url("/images/loading-16px.gif"); }
+        .zenbox-wrapper .integration_menus .integration_button.loading div.service_disabled {
+          display: none; }
+        .zenbox-wrapper .integration_menus .integration_button.loading div.service_enabled {
+          display: inline-block; }
+        .zenbox-wrapper .integration_menus .integration_button.loading div.zenbox_service_icon {
+          opacity: 0.5; }
+    .zenbox-wrapper .integration_menus li.active {
+      background: #f2f2f2;
+      z-index: 2000;
+      /* above integrations menu */
+      border-color: #d6d6d6; }
+  .zenbox-wrapper .custom_actions_integration_menu li, .zenbox-wrapper .custom_endpoint_integration_menu li {
+    margin-bottom: 9px; }
+  .zenbox-wrapper .custom_actions_integration_menu a, .zenbox-wrapper .custom_endpoint_integration_menu a {
+    padding: 2px 5px;
+    border: 1px solid #cccccc;
+    background: #FAFAFA;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 8px; }
+    .zenbox-wrapper .custom_actions_integration_menu a:hover, .zenbox-wrapper .custom_endpoint_integration_menu a:hover {
+      text-decoration: underline; }
+  .zenbox-wrapper .custom_endpoint_integration_menu a {
+    padding: 1px 5px; }
+    .zenbox-wrapper .custom_endpoint_integration_menu a span {
+      vertical-align: middle;
+      padding: 2px 0;
+      display: inline-block; }
+    .zenbox-wrapper .custom_endpoint_integration_menu a div.request_icon {
+      vertical-align: middle;
+      display: inline-block;
+      height: 16px;
+      width: 16px;
+      padding-top: 1px;
+      margin-right: 4px;
+      background: url("/assets/new_tab.png") 0 0 no-repeat #fafafa; }
+    .zenbox-wrapper .custom_endpoint_integration_menu a[data-ajax="true"] div.request_icon {
+      display: none; }
+    .zenbox-wrapper .custom_endpoint_integration_menu a .spinner {
+      margin-right: 4px; }
+  .zenbox-wrapper .zenbox-customer-profile p.integration_menu {
+    clear: both;
+    display: block;
+    margin: 0 !important;
+    padding: 10px 5px;
+    z-index: 1000;
+    background: #f2f2f2;
+    border: 1px solid #d6d6d6;
+    font-size: 13px;
+    line-height: 14px;
+    position: absolute;
+    width: 188px;
+    right: 0px;
+    max-height: 180px;
+    overflow: auto;
+    box-shadow: #999999 1px 2px 5px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu h3 {
+      margin: 0;
+      border: none;
+      padding: 4px 0 15px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu a.action {
+      width: auto;
+      margin-right: 5px; }
+      .zenbox-wrapper .zenbox-customer-profile p.integration_menu a.action img {
+        vertical-align: middle; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu td.link-action {
+      width: 16px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu p.refresh {
+      font-size: 10px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 17px;
+      margin-right: 8px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu small {
+      line-height: 14px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu.stripe_integration_menu span.separator {
+      color: #aaa; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu.user_voice_integration_menu h3 {
+      padding-bottom: 12px; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu.user_voice_integration_menu abbr.timeago {
+      color: #8A8F99;
+      display: inline-block; }
+    .zenbox-wrapper .zenbox-customer-profile p.integration_menu.user_voice_integration_menu .activity {
+      padding-left: 2px; }
+      .zenbox-wrapper .zenbox-customer-profile p.integration_menu.user_voice_integration_menu .activity .activity-filter li {
+        margin: 0 4px; }
+  .zenbox-wrapper img.creditcard_icon {
+    vertical-align: middle; }
+  .zenbox-wrapper .link_list_menu {
+    list-style-type: none; }
+    .zenbox-wrapper .link_list_menu .zenbox-table a {
+      max-width: 184px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      display: block; }
+  .zenbox-wrapper .zenbox-notes .note_header {
+    color: #777;
+    font-size: 11px;
+    margin-bottom: 3px; }
+    .zenbox-wrapper .zenbox-notes .note_header a.delete_note {
+      background-image: url("/images/cancel-12px.png");
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      opacity: 0.6; }
+      .zenbox-wrapper .zenbox-notes .note_header a.delete_note:hover {
+        opacity: 1.0; }
+    .zenbox-wrapper .zenbox-notes .note_header span {
+      vertical-align: middle; }
+  .zenbox-wrapper .zenbox-notes textarea.note_input {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 4px; }
+  .zenbox-wrapper .zenbox-notes button.save_note {
+    margin-left: 0; }
+  .zenbox-wrapper .zenbox-notes a.expand_icon, .zenbox-wrapper .zenbox-notes a.collapse_icon {
+    color: #333;
+    text-decoration: none;
+    font-size: 13px; }
+  .zenbox-wrapper .zenbox-notes .note {
+    font-size: 13px; }
+  .zenbox-wrapper .zenbox-notes .note_container, .zenbox-wrapper .zenbox-notes .no_notes {
+    padding-bottom: 8px;
+    margin-bottom: 6px; }
+  .zenbox-wrapper .zenbox-notes .note_container {
+    border-bottom: 1px solid #cccccc; }
+  .zenbox-wrapper .shopify_integration_menu ul .order_header {
+    margin-bottom: 5px; }
+  .zenbox-wrapper .shopify_integration_menu ul li {
+    border-bottom: 1px solid #cccccc;
+    padding: 8px 0 5px; }
+  .zenbox-wrapper .shopify_integration_menu ul li:last-child {
+    border-bottom: none;
+    padding-bottom: 0; }
+  .zenbox-wrapper .shopify_integration_menu ul li:first-child {
+    padding-top: 0; }
+
+/* html > body div ol.gbtc li#rapportive-status{ */
+/*   display: none !important; */
+/* } */
+div.zenbox-wrapper {
+  padding: 0;
+  margin-top: 12px;
+  padding-bottom: 5px; }
+  div.zenbox-wrapper p {
+    margin-left: 8px;
+    margin-top: 20px; }
+  div.zenbox-wrapper ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none; }
+  div.zenbox-wrapper li {
+    list-style-type: none; }
+  div.zenbox-wrapper a {
+    color: #11b; }
+  div.zenbox-wrapper a:hover {
+    text-decoration: underline; }
+  div.zenbox-wrapper h3 {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif; }
+
+span#zenbox-status {
+  position: relative; }
+  span#zenbox-status span#zenbox-icon {
+    width: 14px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: bottom;
+    background: url(https://zenbox.com/images/zenbox-r-14.png) no-repeat 0px 0px;
+    cursor: pointer; }
+  span#zenbox-status #zenbox-main-menu {
+    position: absolute;
+    left: -7px;
+    top: 17px; }
+
+span#zenbox-status:hover span#zenbox-icon {
+  background-position: -14px 0px; }
+
+li#zenbox-status {
+  position: relative;
+  margin-right: 4px; }
+  li#zenbox-status .menu-button {
+    padding-right: 10px; }
+  li#zenbox-status #zenbox-main-menu {
+    position: absolute;
+    right: 0px;
+    top: 29px; }
+
+li#zenbox-status.dec2011 .menu-heading {
+  margin-top: 1px; }
+li#zenbox-status.dec2011 .menu-heading .menu-button {
+  padding-bottom: 1px;
+  padding-top: 1px;
+  padding-right: 6px; }
+li#zenbox-status.dec2011 .menu-heading .menu-button .gbma {
+  margin-left: -3px; }
+li#zenbox-status.dec2011 #zenbox-main-menu {
+  top: 36px;
+  padding-right: 0; }
+li#zenbox-status.dec2011 .menu-arrow {
+  left: 24px; }
+li#zenbox-status.dec2011 .menu-arrow.white {
+  top: 27px; }
+li#zenbox-status.dec2011 .menu-arrow.grey {
+  top: 26px; }
+
+/* Make sure graph tooltip displays above qtip container */
+#jqstooltip {
+  z-index: 20000;
+  box-sizing: content-box; }
+
+.zenbox_service_icon.campaign_monitor_icon {
+  background-image: url("/images/service_icons/campaign_monitor.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.campaign_monitor_icon.service_disabled {
+    background-image: url("/images/service_icons/campaign_monitor_disabled.png"); }
+
+.zenbox_service_icon.constant_contact_icon {
+  background-image: url("/images/service_icons/constant_contact.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.constant_contact_icon.service_disabled {
+    background-image: url("/images/service_icons/constant_contact_disabled.png"); }
+
+.zenbox_service_icon.custom_endpoint_icon {
+  background-image: url("/images/service_icons/custom_endpoint.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.custom_endpoint_icon.service_disabled {
+    background-image: url("/images/service_icons/custom_endpoint_disabled.png"); }
+
+.zenbox_service_icon.desk_dot_com_icon {
+  background-image: url("/images/service_icons/desk_dot_com.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.desk_dot_com_icon.service_disabled {
+    background-image: url("/images/service_icons/desk_dot_com_disabled.png"); }
+
+.zenbox_service_icon.eventbrite_icon {
+  background-image: url("/images/service_icons/eventbrite.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.eventbrite_icon.service_disabled {
+    background-image: url("/images/service_icons/eventbrite_disabled.png"); }
+
+.zenbox_service_icon.full_contact_icon {
+  background-image: url("/images/service_icons/full_contact.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.full_contact_icon.service_disabled {
+    background-image: url("/images/service_icons/full_contact_disabled.png"); }
+
+.zenbox_service_icon.github_icon {
+  background-image: url("/images/service_icons/github.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.github_icon.service_disabled {
+    background-image: url("/images/service_icons/github_disabled.png"); }
+
+.zenbox_service_icon.gmail_icon {
+  background-image: url("/images/service_icons/gmail.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.gmail_icon.service_disabled {
+    background-image: url("/images/service_icons/gmail_disabled.png"); }
+
+.zenbox_service_icon.google_icon {
+  background-image: url("/images/service_icons/google.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.google_icon.service_disabled {
+    background-image: url("/images/service_icons/google_disabled.png"); }
+
+.zenbox_service_icon.google_docs_icon {
+  background-image: url("/images/service_icons/google_docs.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.google_docs_icon.service_disabled {
+    background-image: url("/images/service_icons/google_docs_disabled.png"); }
+
+.zenbox_service_icon.intercom_icon {
+  background-image: url("/images/service_icons/intercom.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.intercom_icon.service_disabled {
+    background-image: url("/images/service_icons/intercom_disabled.png"); }
+
+.zenbox_service_icon.mad_mimi_icon {
+  background-image: url("/images/service_icons/mad_mimi.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.mad_mimi_icon.service_disabled {
+    background-image: url("/images/service_icons/mad_mimi_disabled.png"); }
+
+.zenbox_service_icon.mailchimp_icon {
+  background-image: url("/images/service_icons/mailchimp.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.mailchimp_icon.service_disabled {
+    background-image: url("/images/service_icons/mailchimp_disabled.png"); }
+
+.zenbox_service_icon.mixpanel_icon {
+  background-image: url("/images/service_icons/mixpanel.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.mixpanel_icon.service_disabled {
+    background-image: url("/images/service_icons/mixpanel_disabled.png"); }
+
+.zenbox_service_icon.nimble_icon {
+  background-image: url("/images/service_icons/nimble.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.nimble_icon.service_disabled {
+    background-image: url("/images/service_icons/nimble_disabled.png"); }
+
+.zenbox_service_icon.parse_icon {
+  background-image: url("/images/service_icons/parse.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.parse_icon.service_disabled {
+    background-image: url("/images/service_icons/parse_disabled.png"); }
+
+.zenbox_service_icon.salesforce_icon {
+  background-image: url("/images/service_icons/salesforce.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.salesforce_icon.service_disabled {
+    background-image: url("/images/service_icons/salesforce_disabled.png"); }
+
+.zenbox_service_icon.shopify_icon {
+  background-image: url("/images/service_icons/shopify.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.shopify_icon.service_disabled {
+    background-image: url("/images/service_icons/shopify_disabled.png"); }
+
+.zenbox_service_icon.stripe_icon {
+  background-image: url("/images/service_icons/stripe.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.stripe_icon.service_disabled {
+    background-image: url("/images/service_icons/stripe_disabled.png"); }
+
+.zenbox_service_icon.tender_icon {
+  background-image: url("/images/service_icons/tender.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.tender_icon.service_disabled {
+    background-image: url("/images/service_icons/tender_disabled.png"); }
+
+.zenbox_service_icon.user_voice_icon {
+  background-image: url("/images/service_icons/user_voice.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.user_voice_icon.service_disabled {
+    background-image: url("/images/service_icons/user_voice_disabled.png"); }
+
+.zenbox_service_icon.wufoo_icon {
+  background-image: url("/images/service_icons/wufoo.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.wufoo_icon.service_disabled {
+    background-image: url("/images/service_icons/wufoo_disabled.png"); }
+
+.zenbox_service_icon.zenbox_icon {
+  background-image: url("/images/service_icons/zenbox.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.zenbox_icon.service_disabled {
+    background-image: url("/images/service_icons/zenbox_disabled.png"); }
+
+.zenbox_service_icon.zendesk_icon {
+  background-image: url("/images/service_icons/zendesk.png");
+  background-repeat: no-repeat; }
+  .zenbox_service_icon.zendesk_icon.service_disabled {
+    background-image: url("/images/service_icons/zendesk_disabled.png"); }
+
+.goog-zippy-expanded img {
+  background-image: url("http://closure-library.googlecode.com/svn/trunk/closure/goog/images/minus.png"); }
+
+.goog-zippy-collapsed img {
+  background-image: url("http://closure-library.googlecode.com/svn/trunk/closure/goog/images/plus.png"); }
+
+.zenbox_service_icon {
+  height: 16px;
+  width: 24px;
+  display: inline-block; }
+
+.zenbox-wrapper {
+  line-height: 1;
+  background: white;
+  /* remember to define focus styles! */
+  /* tables still need 'cellspacing="0"' in the markup */ }
+  .zenbox-wrapper * {
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; }
+  .zenbox-wrapper div, .zenbox-wrapper span, .zenbox-wrapper applet, .zenbox-wrapper object, .zenbox-wrapper iframe,
+  .zenbox-wrapper h1, .zenbox-wrapper h2, .zenbox-wrapper h3, .zenbox-wrapper h4, .zenbox-wrapper h5, .zenbox-wrapper h6, .zenbox-wrapper p, .zenbox-wrapper blockquote, .zenbox-wrapper pre,
+  .zenbox-wrapper a, .zenbox-wrapper abbr, .zenbox-wrapper acronym, .zenbox-wrapper address, .zenbox-wrapper big, .zenbox-wrapper cite, .zenbox-wrapper code,
+  .zenbox-wrapper del, .zenbox-wrapper dfn, .zenbox-wrapper em, .zenbox-wrapper font, .zenbox-wrapper img, .zenbox-wrapper ins, .zenbox-wrapper kbd, .zenbox-wrapper q, .zenbox-wrapper s, .zenbox-wrapper samp,
+  .zenbox-wrapper small, .zenbox-wrapper strike, .zenbox-wrapper strong, .zenbox-wrapper sub, .zenbox-wrapper sup, .zenbox-wrapper tt, .zenbox-wrapper var,
+  .zenbox-wrapper dl, .zenbox-wrapper dt, .zenbox-wrapper dd, .zenbox-wrapper ol, .zenbox-wrapper ul, .zenbox-wrapper li,
+  .zenbox-wrapper fieldset, .zenbox-wrapper form, .zenbox-wrapper label, .zenbox-wrapper legend,
+  .zenbox-wrapper table, .zenbox-wrapper caption, .zenbox-wrapper tbody, .zenbox-wrapper tfoot, .zenbox-wrapper thead, .zenbox-wrapper tr, .zenbox-wrapper th, .zenbox-wrapper td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    text-shadow: none;
+    line-height: 1; }
+  .zenbox-wrapper strong {
+    font-weight: bold; }
+  .zenbox-wrapper em {
+    font-style: italic; }
+  .zenbox-wrapper h1, .zenbox-wrapper h2, .zenbox-wrapper h3, .zenbox-wrapper h4, .zenbox-wrapper h5, .zenbox-wrapper h6 {
+    color: black; }
+  .zenbox-wrapper h3 {
+    font-size: 1.17em;
+    font-weight: bold; }
+  .zenbox-wrapper :focus {
+    outline: 0; }
+  .zenbox-wrapper ol, .zenbox-wrapper ul {
+    list-style: none; }
+  .zenbox-wrapper table {
+    border-collapse: separate;
+    border-spacing: 0; }
+  .zenbox-wrapper caption, .zenbox-wrapper th, .zenbox-wrapper td {
+    text-align: left;
+    font-weight: normal; }
+  .zenbox-wrapper blockquote:before, .zenbox-wrapper blockquote:after,
+  .zenbox-wrapper q:before, .zenbox-wrapper q:after {
+    content: ""; }
+  .zenbox-wrapper blockquote, .zenbox-wrapper q {
+    quotes: "" ""; }
+  .zenbox-wrapper small {
+    font-size: 11px;
+    font-weight: normal; }
+
+/*
+Version: 2.1 Timestamp: Tue Jun 12 19:50:25 PDT 2012
+*/
+.select2-container {
+  position: relative;
+  display: inline-block;
+  /* inline-block for ie7 */
+  zoom: 1;
+  *display: inline; }
+
+.select2-container,
+.select2-drop,
+.select2-search,
+.select2-container .select2-search input {
+  /* 
+    Force border-box so that % widths fit the parent
+    container without overlap because of margin/padding.
+    
+    More Info : http://www.quirksmode.org/css/box.html
+  */
+  -moz-box-sizing: border-box;
+  /* firefox */
+  -ms-box-sizing: border-box;
+  /* ie */
+  -webkit-box-sizing: border-box;
+  /* webkit */
+  -khtml-box-sizing: border-box;
+  /* konqueror */
+  box-sizing: border-box;
+  /* css3 */ }
+
+.select2-container .select2-choice {
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(0.5, white));
+  background-image: -webkit-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+  background-image: -moz-linear-gradient(center bottom, #eeeeee 0%, white 50%);
+  background-image: -o-linear-gradient(bottom, #eeeeee 0%, white 50%);
+  background-image: -ms-linear-gradient(top, #eeeeee 0%, white 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#eeeeee', endColorstr = '#ffffff', GradientType = 0);
+  background-image: linear-gradient(top, #eeeeee 0%, white 50%);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid #aaaaaa;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 0 0 8px;
+  color: #444;
+  text-decoration: none; }
+
+.select2-container .select2-choice span {
+  margin-right: 26px;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis; }
+
+.select2-container .select2-choice abbr {
+  display: block;
+  position: absolute;
+  right: 26px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  font-size: 1px;
+  background: image-url("select2.png") right top no-repeat;
+  cursor: pointer;
+  text-decoration: none;
+  border: 0;
+  outline: 0; }
+
+.select2-container .select2-choice abbr:hover {
+  background-position: right -11px;
+  cursor: pointer; }
+
+.select2-container .select2-drop {
+  background: #fff;
+  border: 1px solid #aaaaaa;
+  border-top: 0;
+  position: absolute;
+  top: 100%;
+  -webkit-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  width: 100%;
+  margin-top: -1px;
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px; }
+
+.select2-container .select2-choice div {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background: #ccc;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cccccc), color-stop(0.6, #eeeeee));
+  background-image: -webkit-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -moz-linear-gradient(center bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -o-linear-gradient(bottom, #cccccc 0%, #eeeeee 60%);
+  background-image: -ms-linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#cccccc', endColorstr = '#eeeeee', GradientType = 0);
+  background-image: linear-gradient(top, #cccccc 0%, #eeeeee 60%);
+  border-left: 1px solid #aaaaaa;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  height: 100%;
+  width: 18px; }
+
+.select2-container .select2-choice div b {
+  background: image-url("select2.png") no-repeat 0 1px;
+  display: block;
+  width: 100%;
+  height: 100%; }
+
+.select2-container .select2-search {
+  display: inline-block;
+  white-space: nowrap;
+  z-index: 1010;
+  min-height: 26px;
+  width: 100%;
+  margin: 0;
+  padding-left: 4px;
+  padding-right: 4px; }
+
+.select2-container .select2-search-hidden {
+  display: block;
+  position: absolute;
+  left: -10000px; }
+
+.select2-container .select2-search input {
+  background: white image-url("select2.png") no-repeat 100% -22px;
+  background: image-url("select2.png") no-repeat 100% -22px, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+  background: image-url("select2.png") no-repeat 100% -22px, -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: image-url("select2.png") no-repeat 100% -22px, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: image-url("select2.png") no-repeat 100% -22px, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+  background: image-url("select2.png") no-repeat 100% -22px, -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  background: image-url("select2.png") no-repeat 100% -22px, linear-gradient(top, white 85%, #eeeeee 99%);
+  padding: 4px 20px 4px 5px;
+  outline: 0;
+  border: 1px solid #aaaaaa;
+  font-family: sans-serif;
+  font-size: 1em;
+  width: 100%;
+  margin: 0;
+  height: auto !important;
+  min-height: 26px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0; }
+
+.select2-container .select2-search input.select2-active {
+  background: white image-url("spinner.gif") no-repeat 100%;
+  background: image-url("spinner.gif") no-repeat 100%, -webkit-gradient(linear, left bottom, left top, color-stop(0.85, white), color-stop(0.99, #eeeeee));
+  background: image-url("spinner.gif") no-repeat 100%, -webkit-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: image-url("spinner.gif") no-repeat 100%, -moz-linear-gradient(center bottom, white 85%, #eeeeee 99%);
+  background: image-url("spinner.gif") no-repeat 100%, -o-linear-gradient(bottom, white 85%, #eeeeee 99%);
+  background: image-url("spinner.gif") no-repeat 100%, -ms-linear-gradient(top, white 85%, #eeeeee 99%);
+  background: image-url("spinner.gif") no-repeat 100%, linear-gradient(top, white 85%, #eeeeee 99%); }
+
+.select2-container-active .select2-choice,
+.select2-container-active .select2-choices {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #5897fb;
+  outline: none; }
+
+.select2-dropdown-open .select2-choice {
+  border: 1px solid #aaaaaa;
+  border-bottom-color: transparent;
+  -webkit-box-shadow: 0 1px 0 white inset;
+  -moz-box-shadow: 0 1px 0 white inset;
+  -o-box-shadow: 0 1px 0 white inset;
+  box-shadow: 0 1px 0 white inset;
+  background-color: #eee;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(0.5, #eeeeee));
+  background-image: -webkit-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+  background-image: -moz-linear-gradient(center bottom, white 0%, #eeeeee 50%);
+  background-image: -o-linear-gradient(bottom, white 0%, #eeeeee 50%);
+  background-image: -ms-linear-gradient(top, white 0%, #eeeeee 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee',GradientType=0 );
+  background-image: linear-gradient(top, white 0%, #eeeeee 50%);
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.select2-dropdown-open .select2-choice div {
+  background: transparent;
+  border-left: none; }
+
+.select2-dropdown-open .select2-choice div b {
+  background-position: -18px 1px; }
+
+/* results */
+.select2-container .select2-results {
+  margin: 4px 4px 4px 0;
+  padding: 0 0 0 4px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 200px; }
+
+.select2-container .select2-results li {
+  line-height: 80%;
+  padding: 7px 7px 8px;
+  margin: 0;
+  list-style: none;
+  cursor: pointer;
+  display: list-item; }
+
+.select2-container .select2-results .select2-highlighted {
+  background: #3875d7;
+  color: #fff; }
+
+.select2-container .select2-results li em {
+  background: #feffde;
+  font-style: normal; }
+
+.select2-container .select2-results .select2-highlighted em {
+  background: transparent; }
+
+.select2-container .select2-results .select2-no-results {
+  background: #f4f4f4;
+  display: list-item; }
+
+/*
+disabled look for already selected choices in the results dropdown
+.select2-container .select2-results .select2-disabled.select2-highlighted {
+    color: #666;
+    background: #f4f4f4;
+    display: list-item;
+    cursor: default;
+}
+.select2-container .select2-results .select2-disabled {
+  background: #f4f4f4;
+  display: list-item;
+  cursor: default;
+}
+*/
+.select2-container .select2-results .select2-disabled {
+  display: none; }
+
+.select2-more-results.select2-active {
+  background: #f4f4f4 image-url("spinner.gif") no-repeat 100%; }
+
+.select2-more-results {
+  background: #f4f4f4;
+  display: list-item; }
+
+/* disabled styles */
+.select2-container.select2-container-disabled .select2-choice {
+  background-color: #f4f4f4;
+  background-image: none;
+  border: 1px solid #dddddd;
+  cursor: default; }
+
+.select2-container.select2-container-disabled .select2-choice div {
+  background-color: #f4f4f4;
+  background-image: none;
+  border-left: 0; }
+
+/* multiselect */
+.select2-container-multi .select2-choices {
+  background-color: #fff;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(1%, #eeeeee), color-stop(15%, white));
+  background-image: -webkit-linear-gradient(top, #eeeeee 1%, white 15%);
+  background-image: -moz-linear-gradient(top, #eeeeee 1%, white 15%);
+  background-image: -o-linear-gradient(top, #eeeeee 1%, white 15%);
+  background-image: -ms-linear-gradient(top, #eeeeee 1%, white 15%);
+  background-image: linear-gradient(top, #eeeeee 1%, white 15%);
+  border: 1px solid #aaaaaa;
+  margin: 0;
+  padding: 0;
+  cursor: text;
+  overflow: hidden;
+  height: auto !important;
+  height: 1%;
+  position: relative; }
+
+.select2-container-multi .select2-drop {
+  margin-top: 0; }
+
+.select2-container-multi .select2-choices {
+  min-height: 26px; }
+
+.select2-container-multi.select2-container-active .select2-choices {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #5897fb;
+  outline: none; }
+
+.select2-container-multi .select2-choices li {
+  float: left;
+  list-style: none; }
+
+.select2-container-multi .select2-choices .select2-search-field {
+  white-space: nowrap;
+  margin: 0;
+  padding: 0; }
+
+.select2-container-multi .select2-choices .select2-search-field input {
+  color: #666;
+  background: transparent !important;
+  font-family: sans-serif;
+  font-size: 100%;
+  height: 15px;
+  padding: 5px;
+  margin: 1px 0;
+  outline: 0;
+  border: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none; }
+
+.select2-default {
+  color: #999999 !important; }
+
+.select2-container-multi .select2-choices .select2-search-choice {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #e4e4e4;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f4f4f4', endColorstr='#eeeeee', GradientType=0 );
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
+  background-image: -webkit-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: -moz-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: -o-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: -ms-linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  background-image: linear-gradient(top, #f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
+  -webkit-box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
+  color: #333;
+  border: 1px solid #aaaaaa;
+  line-height: 13px;
+  padding: 3px 5px 3px 18px;
+  margin: 3px 0 3px 5px;
+  position: relative;
+  cursor: default; }
+
+.select2-container-multi .select2-choices .select2-search-choice span {
+  cursor: default; }
+
+.select2-container-multi .select2-choices .select2-search-choice-focus {
+  background: #d4d4d4; }
+
+.select2-search-choice-close {
+  display: block;
+  position: absolute;
+  right: 3px;
+  top: 4px;
+  width: 12px;
+  height: 13px;
+  font-size: 1px;
+  background: image-url("select2.png") right top no-repeat;
+  outline: none; }
+
+.select2-container-multi .select2-search-choice-close {
+  left: 3px; }
+
+.select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close:hover {
+  background-position: right -11px; }
+
+.select2-container-multi .select2-choices .select2-search-choice-focus .select2-search-choice-close {
+  background-position: right -11px; }
+
+.select2-container-multi .select2-results {
+  margin: -1px 0 0;
+  padding: 0; }
+
+/* disabled styles */
+.select2-container-multi.select2-container-disabled .select2-choices {
+  background-color: #f4f4f4;
+  background-image: none;
+  border: 1px solid #dddddd;
+  cursor: default; }
+
+.select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice {
+  background-image: none;
+  background-color: #f4f4f4;
+  border: 1px solid #dddddd;
+  padding: 3px 5px 3px 5px; }
+
+.select2-container-multi.select2-container-disabled .select2-choices .select2-search-choice .select2-search-choice-close {
+  display: none; }
+
+/* end multiselect */
+.zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu {
+  font-family: sans-serif;
+  font-size: 10px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu a:link {
+    color: #007dbf;
+    text-decoration: underline; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu a:visited {
+    color: #007dbf; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu a:hover {
+    color: #005480;
+    text-decoration: none; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu p {
+    margin-bottom: 1em; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .loading {
+    color: #8a8f99; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-stream {
+    margin-bottom: 1em; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 10px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update-title {
+    font-weight: bold; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update-meta {
+    color: #8a8f99;
+    display: block; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .more-or-less {
+    text-align: center; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .user_voice_activity-sprite, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.comment a:before, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.ticket a:before, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.idea a:before, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.vote a:before, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .ticket-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .idea-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .vote-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .comment-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .ticket-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .idea-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .vote-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .comment-icon {
+    background: url(/images/user_voice_activity.png) no-repeat; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.comment a:before {
+    background-position: 0 -160px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.ticket a:before {
+    background-position: 0 -176px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.idea a:before {
+    background-position: 0 -80px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .update.vote a:before {
+    background-position: 0 -96px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter {
+    font-size: 11px;
+    margin-bottom: 10px;
+    list-style: none;
+    line-height: 22px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter li {
+    display: inline-block; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter li + li {
+    margin-left: 10px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter a {
+    color: #8a8f99;
+    font-weight: bold;
+    line-height: 15px;
+    text-decoration: none;
+    display: block;
+    vertical-align: bottom; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .ticket-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .idea-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .comment-icon, .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .vote-icon {
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 2px;
+    height: 16px;
+    width: 16px;
+    text-indent: -9999px;
+    vertical-align: -15%; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .ticket-icon {
+    background-position: 0 -112px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .idea-icon {
+    background-position: 0 -128px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .vote-icon {
+    background-position: 0 -64px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .comment-icon {
+    background-position: 0 -48px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected a {
+    color: #2e2f33;
+    background-color: inherit; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .ticket-icon {
+    background-position: 0 -144px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .idea-icon {
+    background-position: 0 -16px; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .vote-icon {
+    background-position: 0 0; }
+  .zenbox-wrapper .zenbox-customer-profile .user_voice_integration_menu .activity-filter .is-selected .comment-icon {
+    background-position: 0 -32px; }
+
+#sidebar {
+  padding: 15px 0; }
+
+#main_tabs li span {
+  vertical-align: middle; }
+#main_tabs li .zenbox_service_icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  width: 16px;
+  height: 16px; }
+#main_tabs li .settings_disabled {
+  display: none; }
+
+#main_tabs li.integration a {
+  color: #777; }
+#main_tabs li.integration a.configured {
+  color: #08C; }
+#main_tabs li.integration.active a {
+  color: white; }
+#main_tabs li.integration .settings_enabled {
+  display: none; }
+#main_tabs li.integration .settings_disabled {
+  display: inline-block; }
+#main_tabs li.integration a.configured .settings_enabled {
+  display: inline-block; }
+#main_tabs li.integration a.configured .settings_disabled {
+  display: none; }
+
+.well.content-wrapper {
+  padding-bottom: 30px;
+  padding-left: 40px; }
+  .well.content-wrapper .tab-content {
+    overflow: visible; }
+
+.tab-content p, .tab-content li, .tab-content em, .tab-content strong {
+  font-size: 15px;
+  line-height: 1.5; }
+
+#login {
+  padding: 9px 38px;
+  font-size: 18px; }
+
+.page_header {
+  margin-bottom: 36px;
+  margin-top: 15px; }
+  .page_header h1 {
+    font-size: 35px;
+    display: inline-block;
+    vertical-align: middle; }
+  .page_header img.logo {
+    display: inline-block;
+    margin-right: 27px; }
+
+div#account .logged-in-wrapper {
+  display: inline-block;
+  height: 96px;
+  padding-left: 20px;
+  padding-top: 5px; }
+div#account .avatar {
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #cccccc;
+  border-radius: 5px; }
+  div#account .avatar img {
+    border-radius: 4px; }
+div#account h2 {
+  display: block;
+  font-size: 21px;
+  margin-right: 0;
+  margin-bottom: 10px;
+  max-width: 520px; }
+div#account h2 small {
+  color: #555; }
+div#account h3 {
+  margin-bottom: 5px; }
+div#account hr {
+  margin-top: 35px; }
+div#account .organization h2 {
+  margin-bottom: 15px; }
+div#account .organization p {
+  margin-bottom: 22px; }
+
+input#api_key {
+  font-size: 17px;
+  text-align: center;
+  height: 32px; }
+
+button#copy_api_key {
+  height: 32px; }
+
+.select2-container .select2-results li.select2-result {
+  line-height: 17px;
+  padding: 5px 7px 6px; }
+
+p.info {
+  margin-bottom: 25px; }
+
+.spinner, .success {
+  display: inline;
+  margin-left: 8px; }
+
+.form-actions {
+  padding-left: 0;
+  padding-bottom: 0;
+  margin-bottom: 0; }
+  .form-actions .btn {
+    margin-bottom: 15px;
+    margin-right: 20px; }
+    .form-actions .btn i {
+      margin-right: 3px; }
+    .form-actions .btn i, .form-actions .btn span {
+      vertical-align: middle; }
+
+.btn.btn-large#logout {
+  padding: 6px 9px 9px; }
+
+.btn.btn-large.authenticate {
+  margin-bottom: 0; }
+
+label.error {
+  color: #B94A48;
+  margin-top: 3px; }
+
+.control-group.error input::-webkit-input-placeholder {
+  color: #D97A78; }
+
+a.remove_auth {
+  float: right; }
+
+.authentication_failed {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 24px; }
+  .authentication_failed .error_message {
+    font-weight: bold;
+    color: red; }
+
+.btn.btn-with-icon {
+  padding-left: 9px; }
+  .btn.btn-with-icon .zenbox_service_icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: bottom;
+    margin-right: 7px; }
+
+#zenbox-getting-started, #zenbox-reauthenticate {
+  padding: 15px; }
+  #zenbox-getting-started p, #zenbox-reauthenticate p {
+    font-size: 15px; }
+  #zenbox-getting-started h1, #zenbox-reauthenticate h1 {
+    margin-bottom: 19px; }
+  #zenbox-getting-started ul.oauth-buttons, #zenbox-reauthenticate ul.oauth-buttons {
+    margin: 0;
+    margin-top: 30px;
+    padding-left: 60px; }
+    #zenbox-getting-started ul.oauth-buttons li, #zenbox-reauthenticate ul.oauth-buttons li {
+      list-style-type: none;
+      margin: 20px 0; }
+  #zenbox-getting-started .sign-in-wrapper, #zenbox-reauthenticate .sign-in-wrapper {
+    margin-top: 30px;
+    text-align: center; }
+
+.zenbox-modal-qtip {
+  max-width: none; }
+  .zenbox-modal-qtip .modal_form {
+    text-align: center;
+    padding: 35px 15px; }
+    .zenbox-modal-qtip .modal_form h3 {
+      margin-bottom: 6px; }
+
+#custom_endpoint label.custom_endpoint_url {
+  width: 180px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 18px; }
+#custom_endpoint input[name="url"] {
+  margin-bottom: 0; }
+#custom_endpoint input {
+  display: inline-block; }
+#custom_endpoint label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 8px; }
+#custom_endpoint .remove_auth {
+  padding: 3px 10px 4px 7px;
+  margin-left: 12px; }
+  #custom_endpoint .remove_auth i {
+    margin-right: 6px; }
+  #custom_endpoint .remove_auth i, #custom_endpoint .remove_auth span {
+    vertical-align: middle; }
+#custom_endpoint .save-settings {
+  margin-left: 15px; }
+#custom_endpoint small, #custom_endpoint small strong {
+  font-size: 12px;
+  color: #333; }
+#custom_endpoint .settings_saved {
+  display: none;
+  margin-left: 10px; }
+#custom_endpoint .test-custom-endpoint {
+  margin-bottom: 9px;
+  margin-left: 5px; }
+#custom_endpoint img.spinner.testing_endpoint {
+  margin-bottom: 8px;
+  margin-left: 3px; }
+
+#organization input {
+  display: inline-block;
+  margin: 0;
+  margin-right: 10px; }
+#organization h3 {
+  margin-bottom: 7px; }
+#organization table#organization-users-table {
+  width: 100%;
+  margin-top: 15px;
+  background-color: white; }
+  #organization table#organization-users-table td {
+    text-align: center; }
+  #organization table#organization-users-table .remove_user {
+    padding: 3px 10px 2px; }
+
+.fancybox-skin {
+  background-color: white; }
+
+.try-out-zenbox-wrapper {
+  margin-top: 17px;
+  margin-left: 14px; }
+  .try-out-zenbox-wrapper .try-out-zenbox {
+    font-size: 17px; }
+
+.api_key_guide {
+  padding-top: 20px; }
+  .api_key_guide h2 {
+    margin-bottom: 20px; }
+  .api_key_guide img.screenshot {
+    margin: 20px 0;
+    border: 2px solid #dddddd; }
+
+.zenbox-wrapper .settings-content {
+  max-width: 700px;
+  overflow: scroll;
+  padding: 1em; }
+.zenbox-wrapper .settings-instructions img {
+  max-width: 70%; }
+.zenbox-wrapper .page_header .logo {
+  max-height: 59px; }
+.zenbox-wrapper .goog-tab {
+  padding: 0px 0px 10px 0px; }
+.zenbox-wrapper .goog-tab-bar {
+  padding: 5px; }
+
+.payment label {
+  display: inline-block;
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right; }
+
+.payment input {
+  display: inline-block;
+  float: left; }
+
+.payment .name {
+  float: left;
+  width: 195px; }
+
+.payment .number {
+  float: left;
+  width: 195px; }
+
+.payment .cvc {
+  float: right;
+  width: 85px; }
+
+.payment .expiry {
+  float: right;
+  width: 85px; }
+
+.payment .input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+  height: 37px;
+  font-size: 15px;
+  padding: 9px 7px;
+  border: 1px solid #b4becd;
+  border-top-color: #b0baca;
+  border-bottom-color: #d3d9e2;
+  -moz-box-shadow: inset 0 1px 2px rgba(130, 137, 150, 0.23), 0 1px 0 rgba(255, 255, 255, 0.85);
+  -webkit-box-shadow: inset 0 1px 2px rgba(130, 137, 150, 0.23), 0 1px 0 rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 1px 2px rgba(130, 137, 150, 0.23), 0 1px 0 rgba(255, 255, 255, 0.85);
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  color: #333;
+  margin: 0;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: "Helvetica Neue", Helvetica, Arial Geneva, sans-serif; }
+
+#zenbox-login-cover {
+  z-index: 2;
+  position: absolute;
+  height: 325px;
+  width: 204px; }
+
+#zenbox-login {
+  width: 85%;
+  height: 95%%; }
+
+.socialite {
+  float: left;
+  margin-right: 30px; }

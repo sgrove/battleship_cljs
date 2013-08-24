@@ -1,0 +1,30 @@
+(ns battleship.board-protocol)
+
+(defprotocol Board
+  "Represents a battleship game board"
+  (horizontal? [grid orientation] "Returns true if a given orientation is considered 'horizontal'")
+  (empty-grid [grid width height] "Returns a new board")
+  (row [grid y] "Returns a row in a board")
+  (column [grid x] "Returns a column in a board")
+  (value-at [grid x y] "Returns a value from board")
+  (set-value [grid x y value] "Sets grid value at a point and returns a new grid")
+  (missed-value? [grid value])
+  (empty-value? [grid value])
+  (ship-value? [grid value])
+  (missed-cell? [grid x y] "Returns if a position at x, y has been fired and missed")
+  (empty-cell? [grid x y] "Returns if a position at x, y is empty")
+  (ship-cell? [grid x y] "Returns true if a position contains a ship value")
+  (ship-fits? [grid x y size orientation] "Returns true if a ship can fit within the grid at a given position and orientation")
+  (ship-collision? [grid x y size orientation] "Returns true if a ship can be placed ")
+  (ship-can-be-placed? [grid x y size orientation])
+  (set-ship [grid x y size orientation id]
+    "Returns a new grid with a ship at x, y. Returns false if ship cannot be placed")
+  (ship-at? [grid x y])
+  (random-ship [grid min-ship-size max-ship-size])
+  (populate-grid [grid ship-count min-ship-size max-ship-size] "Returns a new grid with a ship at x, y. Returns false if ship cannot be placed")
+  (missed-count [grid])
+  (undestroyed-ships-exist? [grid])
+  (fire [grid x y])
+  (game-over? [grid])
+  (print-grid [grid]))
+

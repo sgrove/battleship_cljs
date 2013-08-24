@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Battleship</title><link href="/css/bootstrap.simplex.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      .missed    {background-color: gray;}
+      .destroyed {background-color: red; }
+      .unknown   {background-color: blue;}
+      .battleship-cell {
+        width: 40px;
+        height: 40px;
+      }
+    </style>
+    <script type="text/javascript">var CLOSURE_NO_DEPS = true;</script>
+    <script type="text/javascript" src="/js/bin-debug/main.js"></script>
+    <link href="/css/main.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container" id="wrapper">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="build">Build</button>
+      <button id="destroy">Destroy</button>
+      <h1>Battleship</h1>
+      <div class="wrapper">
+        <div class="container">
+          <div id="main">
+            <div>Status: <span id="status">active</span></div>
+            <div>Missed: <span id="missed">0</span></div>
+            <table id="board">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
